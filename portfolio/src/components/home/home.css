@@ -62,13 +62,16 @@
 @keyframes ani-mouse {
     0% {
         top: 29%;
-    } 
+    }
+
     15% {
         top: 50%;
     }
+
     50% {
         top: 50%;
     }
+
     100% {
         top: 29%;
     }
@@ -107,6 +110,7 @@
     left: 18%;
     top: 30%;
 }
+
 .s3 {
     left: 5%;
     bottom: 30%;
@@ -121,3 +125,34 @@
     left: 44%;
     bottom: 10%;
 }
+
+.s6 {
+    left: 36%;
+    bottom: 10%;
+}
+
+.s7 {
+    top: 20%;
+    bottom: 25%;
+}
+
+.s8 {
+    right: 24%;
+    bottom: 20%;
+}
+
+.s9 {
+    right: 2%;
+    top: 10%;
+}
+
+.s10 {
+    top: 45%;
+    right: 11%;
+}
+
+.s11 {
+    bottom: 10%;
+    right: 2%;
+}
+
