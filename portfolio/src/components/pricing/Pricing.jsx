@@ -19,13 +19,12 @@ const Pricing = () => {
           <h3 className="price">
             <em>$</em> 9 <span>Month</span>
           </h3>
-          <a href="#!" className="btn">
+          <a href="" className="btn">
             Get Started
           </a>
         </div>
 
-        <div className="pricing__item best">
-          <span className="badge">Recommended</span>
+        <div className="pricing__item">
           <img src={Image2} alt="" className="pricing__img" />
           <h3 className="pricing__plan">Premium</h3>
           <p className="pricing__title">
@@ -33,9 +32,9 @@ const Pricing = () => {
           </p>
           <p className="pricing__support">Mon-Fri support</p>
           <h3 className="price">
-            <em>$</em> 15 <span>Month</span>
+            <em>$</em> 9 <span>Month</span>
           </h3>
-          <a href="#!" className="btn">
+          <a href="" className="btn">
             Get Started
           </a>
         </div>
@@ -48,9 +47,9 @@ const Pricing = () => {
           </p>
           <p className="pricing__support">24/7 support</p>
           <h3 className="price">
-            <em>$</em> 19 <span>Month</span>
+            <em>$</em> 9 <span>Month</span>
           </h3>
-          <a href="#!" className="btn">
+          <a href="" className="btn">
             Get Started
           </a>
         </div>

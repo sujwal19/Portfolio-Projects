@@ -23,7 +23,9 @@ const App = () => {
       opacity: 0,
       onUpdate: function () {
         if (this.progress() >= 0.9) {
-          document.querySelector(".svg").remove();
+          // Hide instead of remove to prevent layout jumps
+          const svgEl = document.querySelector(".svg");
+          if (svgEl) svgEl.style.display = "none";
           setShowContent(true);
           this.kill();
         }
@@ -60,7 +62,7 @@ const App = () => {
 
     gsap.to(".character", {
       scale: 0.8,
-      x: "-50%",
+      xPercent: -50, // Use xPercent instead of x
       bottom: "-45%",
       rotate: 0,
       duration: 2,
@@ -68,10 +70,11 @@ const App = () => {
       ease: "Expo.easeInOut",
     });
 
+    // FIX: Use xPercent here to align with the CSS left: 50%
     gsap.to(".text", {
       scale: 1,
       rotate: 0,
-      x: "-50%",
+      xPercent: -50,
       duration: 2,
       delay: "-0.8",
       ease: "Expo.easeInOut",
@@ -88,11 +91,9 @@ const App = () => {
       gsap.to(".sky", {
         x: xMove,
       });
-      //
       gsap.to(".bg", {
         x: xMove * 1.5,
       });
-      //
     });
   }, [showContent]);
 
@@ -151,7 +152,9 @@ const App = () => {
                 src="./bg.png"
                 alt=""
               />
-              <div className="text absolute top-5 left-1/2 flex -translate-x-1/2 scale-[1.4] -rotate-10 flex-col gap-2 text-white">
+
+              {/* REMOVED -translate-x-1/2 here so GSAP xPercent works correctly */}
+              <div className="text absolute top-5 left-1/2 flex scale-[1.4] -rotate-10 flex-col gap-2 text-white">
                 <div className="text-inner">
                   <h1 className="-ml-30 text-[8rem] leading-none">grand</h1>
                   <h1 className="ml-20 text-[8rem] leading-none">theft</h1>
@@ -159,7 +162,7 @@ const App = () => {
                 </div>
               </div>
               <img
-                className="character absolute -bottom-[150%] left-1/2 -translate-x-1/2 scale-[2] -rotate-20"
+                className="character absolute -bottom-[150%] left-1/2 scale-[2] -rotate-20"
                 src="./girlbg.png"
                 alt=""
               />
@@ -189,19 +192,7 @@ const App = () => {
                 <h1 className="text-[5rem] leading-none">Still Running,</h1>
                 <h1 className="text-[5rem] leading-none">Not Hunting</h1>
                 <p className="mt-10 w-[90%] font-[Sans-serif] text-[1.05rem]">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa
-                  sit et laboriosam adipisci officiis tempore, cupiditate
-                  deserunt nesciunt, eius quaerat accusamus, eum reiciendis.
-                </p>
-                <p className="mt-3 w-[90%] font-[Sans-serif] text-[1.05rem]">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. In,
-                  sint voluptates assumenda dolores aperiam labore recusandae
-                  dicta qui laborum tempore consequatur.
-                </p>
-                <p className="mt-7 w-[90%] font-[Sans-serif] text-[1.05rem]">
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                  Culpa, non tempora, id consequatur quas vel iste vero officia,
-                  tempore hic veniam.
+                  Lorem ipsum dolor sit amet consectetur...
                 </p>
                 <button className="mt-10 bg-yellow-500 px-9 py-5 text-2xl text-black">
                   Download Now
