@@ -1,6 +1,6 @@
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { use, useState } from "react";
+import { useState } from "react";
 import "remixicon/fonts/remixicon.css";
 
 const App = () => {
