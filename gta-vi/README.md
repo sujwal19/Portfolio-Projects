@@ -2,6 +2,7 @@
 
 A high-fidelity frontend recreation of the official Rockstar Games GTA VI announcement page. This project focuses on cinematic UI/UX, high-performance animations, and asset optimization.
 
+
 🚀 The Challenge
 
 After 2 months of learning to code, I wanted to move beyond basic layouts. Recreating a "Triple-A" gaming site required solving several engineering hurdles:
@@ -11,6 +12,7 @@ Cinematic Motion: Using GSAP to orchestrate smooth, scroll-triggered reveals and
 Asset Management: Serving high-resolution backgrounds and custom typography (Pricedown.otf) efficiently via the public directory for production.
 
 Responsiveness: Ensuring the "Vice City" aesthetic remains intact across mobile, tablet, and ultra-wide desktop screens.
+
 
 🛠️ Tech Stack
 
@@ -24,6 +26,7 @@ Deployment: Vercel
 
 Icons: Lucide React
 
+
 ✨ Key Features
 
 🎯 Pixel-Perfect UI: Meticulously matched the official Rockstar Games layout and spacing.
@@ -34,7 +37,7 @@ Icons: Lucide React
 
 📱 Fully Responsive: Fluid layouts designed for all device breakpoints.
 
-📸 Preview
+
 
 🛠️ Installation & Setup
 To run this project locally:
@@ -56,6 +59,7 @@ Run the development server:
 
 npm run dev
 
+
 📈 What I Learned
 
 The "Production Gap": Debugging font-pathing and case-sensitivity issues during Vercel deployment.
@@ -63,6 +67,7 @@ The "Production Gap": Debugging font-pathing and case-sensitivity issues during 
 Animation Logic: How to use GSAP timelines to sync multiple UI elements.
 
 Vite Architecture: Understanding how the /public directory serves assets in a production build compared to the /src folder.
+
 
 🤝 Connect with Me
 LinkedIn: Sujwal Dhungana
