@@ -153,7 +153,6 @@ const App = () => {
                 alt=""
               />
 
-              {/* REMOVED -translate-x-1/2 here so GSAP xPercent works correctly */}
               <div className="text absolute top-5 left-1/2 flex scale-[1.4] -rotate-10 flex-col gap-2 text-white">
                 <div className="text-inner">
                   <h1 className="-ml-30 text-[8rem] leading-none">grand</h1>
@@ -183,7 +182,7 @@ const App = () => {
             <div className="cntnr flex h-[80%] w-full overflow-hidden text-white">
               <div className="limg relative h-full w-1/2">
                 <img
-                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                  className="absolute top-1/2 left-1/2 w-[80%] -translate-x-1/2 -translate-y-1/2"
                   src="./imag.png"
                   alt=""
                 />
@@ -192,7 +191,15 @@ const App = () => {
                 <h1 className="text-[5rem] leading-none">Still Running,</h1>
                 <h1 className="text-[5rem] leading-none">Not Hunting</h1>
                 <p className="mt-10 w-[90%] font-[Sans-serif] text-[1.05rem]">
-                  Lorem ipsum dolor sit amet consectetur...
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Excepturi placeat incidunt, sapiente provident odit quidem
+                  nesciunt accusamus asperiores nostrum doloremque. consectetur
+                  adipisicing elit. Excepturi placeat incidunt
+                </p>
+                <p className="mt-10 w-[90%] font-[Sans-serif] text-[1.05rem]">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Excepturi placeat incidunt, sapiente provident odit quidem
+                  nesciunt accusamus asperiores nostrum doloremque.
                 </p>
                 <button className="mt-10 bg-yellow-500 px-9 py-5 text-2xl text-black">
                   Download Now
