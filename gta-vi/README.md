@@ -1,9 +1,5 @@
-Since you’ve moved your font to the public folder and are using GSAP for animations, your README should reflect those professional touches. Here is the updated, polished version.
-
 🎮 GTA VI Website Clone
 A high-fidelity frontend recreation of the official Rockstar Games GTA VI announcement page. This project focuses on cinematic UI/UX, high-performance animations, and asset optimization.
-
-🔗 Live Demo (Update this with your final custom domain if you changed it!)
 
 🚀 The Challenge
 After 2 months of learning to code, I wanted to move beyond basic layouts. Recreating a "Triple-A" gaming site required solving several engineering hurdles:
@@ -35,8 +31,6 @@ Icons: Lucide React
 📱 Fully Responsive: Fluid layouts designed for all device breakpoints.
 
 📸 Preview
-[!TIP]
-Don't forget to add a screenshot here! Just drag your image file into the GitHub editor.
 
 🛠️ Installation & Setup
 To run this project locally:
@@ -45,18 +39,16 @@ Clone the repo:
 
 Bash
 git clone https://github.com/sujwal19/ReactProjects.git
+
 Navigate to the project directory:
-
-Bash
 cd gta-vi
+
 Install dependencies:
-
-Bash
 npm install
-Run the development server:
 
-Bash
+Run the development server:
 npm run dev
+
 📈 What I Learned
 The "Production Gap": Debugging font-pathing and case-sensitivity issues during Vercel deployment.
 
