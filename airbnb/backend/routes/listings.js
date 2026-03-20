@@ -3,20 +3,41 @@ const router = express.Router();
 import Listing from "../models/Listing.js";
 import { protect } from "../middleware/authMiddleware.js";
 import mongoose from "mongoose";
+import upload from "../middleware/upload.js";
+import { uploadToCloudinary } from "../utils/uploadToCloudinary.js";
 
-router.post("/", protect, async (req, res) => {
-  const listing = new Listing({
-    ...req.body,
-    host: req.user,
-  });
+router.post("/", protect, upload.single("image"), async (req, res) => {
+  try {
+    const { title, description, price } = req.body;
 
-  await listing.save();
+    let imageURL = "";
 
-  res.status(201).json({
-    success: true,
-    message: "Listings Added",
-    data: listing,
-  });
+    if (req.file) {
+      imageURL = await uploadToCloudinary(req.file.buffer, "airbnb-images");
+    }
+
+    const listing = new Listing({
+      title,
+      description,
+      price,
+      host: req.user,
+      image: imageURL,
+    });
+
+    await listing.save();
+
+    res.status(201).json({
+      success: true,
+      message: "Listings Added successfully",
+      data: listing,
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({
+      success: false,
+      error: err.message,
+    });
+  }
 });
 
 router.get("/", async (req, res) => {
@@ -145,6 +166,13 @@ router.put("/:id", protect, async (req, res) => {
     listing.title = title || listing.title;
     listing.description = description || listing.description;
     listing.price = price || listing.price;
+
+    if (req.file) {
+      listing.image = await uploadToCloudinary(
+        req.file.buffer,
+        "airbnb-images",
+      );
+    }
 
     await listing.save();
 

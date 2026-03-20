@@ -9,6 +9,30 @@ const EditListing = () => {
   const [listing, setListing] = useState(null);
   const [loading, setLoading] = useState(false);
 
+  const [formData, setFormData] = useState({
+    title: "",
+    description: "",
+    price: "",
+  });
+
+  useEffect(() => {
+    if (listing) {
+      setFormData({
+        title: listing.title || "",
+        description: listing.description || "",
+        price: listing.price || "",
+      });
+    }
+  }, [listing]);
+
+  const inputHandler = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
   const getListing = async () => {
     setLoading(true);
     try {
@@ -20,7 +44,6 @@ const EditListing = () => {
       setLoading(false);
     }
   };
-
   useEffect(() => {
     getListing();
   }, [id]);
@@ -31,15 +54,58 @@ const EditListing = () => {
   const owner =
     listing && listing.host && user ? listing.host._id === user.id : false;
 
-  console.log(owner);
+  const submitHandler = async (e) => {
+    e.preventDefault();
+
+    try {
+      await axios.put(`http://localhost:5000/api/listings/${id}`, formData, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      });
+
+      alert("Listing updated successfully");
+      navigate(`/listing/${id}`);
+    } catch (err) {
+      alert("Error updating listing");
+    }
+  };
 
   if (loading) return <h2>Loading...</h2>;
   if (!listing) return <h2>Listing not found</h2>;
 
+  if (!owner) return <h2>You are not authorized to edit this listing</h2>;
+
   return (
     <div>
-      <Link>Back to Home</Link>
+      <br />
+      <Link to="/">Back to Home</Link>
+      <br />
       <ListingCard listing={listing} />
+      <br />
+      <form onSubmit={submitHandler}>
+        <input
+          type="text"
+          name="title"
+          placeholder="Enter Title"
+          onChange={inputHandler}
+          value={formData.title}
+        />
+        <textarea
+          name="description"
+          placeholder="Enter Description"
+          onChange={inputHandler}
+          value={formData.description}
+        />
+        <input
+          type="number"
+          name="price"
+          placeholder="Enter Price"
+          onChange={inputHandler}
+          value={formData.price}
+        />
+        <button type="submit">Update Listing</button>
+      </form>
     </div>
   );
 };

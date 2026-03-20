@@ -37,6 +37,12 @@ const ListingDetails = () => {
   if (!listing) return <h2>Listing not found</h2>;
 
   const deleteHandler = async () => {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this listing?",
+    );
+
+    if (!confirmDelete) return;
+
     try {
       await axios.delete(`http://localhost:5000/api/listings/${listing._id}`, {
         headers: {
@@ -52,16 +58,27 @@ const ListingDetails = () => {
 
   return (
     <div>
-      <Link>Back to Home</Link>
-      <ListingCard listing={listing} />
+      <Link to="/">Back to Home</Link>
+      <h1>{listing.title}</h1>
 
-      <div>
-        <h4>Owner Actions</h4>
-        <Link to={`/listing/${listing._id}/edit`}>
-          {owner && <button>Edit</button>}
-        </Link>
-        {owner && <button onClick={deleteHandler}>Delete</button>}
-      </div>
+      {/* <img src={listing.image} alt={listing.title} /> */}
+
+      <p>{listing.description}</p>
+
+      <h3>${listing.price}</h3>
+
+      <p>Hosted by: {listing.host?.name}</p>
+
+      {owner && (
+        <section>
+          <h4>Owner Actions</h4>
+          <Link to={`/listing/${listing._id}/edit`}>
+            <button>Edit</button>
+          </Link>
+
+          <button onClick={deleteHandler}>Delete</button>
+        </section>
+      )}
     </div>
   );
 };
