@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import ListingCard from "../components/ListingCard";
+import toast from "react-hot-toast";
 
 const EditListing = () => {
   const navigate = useNavigate();
@@ -99,11 +100,11 @@ const EditListing = () => {
         },
       });
 
-      alert("Listing updated successfully");
+      toast.success("Listing updated!");
       setIsImageRemoved(false);
       navigate(`/listing/${id}`);
     } catch (err) {
-      alert("Error updating listing", err.message);
+      toast.error("Error updating listing");
     }
   };
 

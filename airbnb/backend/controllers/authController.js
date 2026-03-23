@@ -1,20 +1,25 @@
-import express from "express";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import User from "../models/User.js";
-const router = express.Router();
+import { asyncHandler } from "../utils/asyncHandler.js";
 
-router.post("/register", async (req, res) => {
+export const register = asyncHandler(async (req, res) => {
   const { name, email, password } = req.body;
+
+  const userExists = await User.findOne({ email });
+
+  if (userExists) {
+    res.status(400);
+    throw new Error("User already exists");
+  }
+
   const hashed = await bcrypt.hash(password, 10);
 
-  const user = new User({
+  const user = await User.create({
     name,
     email,
     password: hashed,
   });
-
-  await user.save();
 
   res.status(201).json({
     success: true,
@@ -22,37 +27,30 @@ router.post("/register", async (req, res) => {
   });
 });
 
-router.post("/login", async (req, res) => {
+export const login = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
   const user = await User.findOne({ email });
-
   if (!user) {
-    return res.status(400).json({
-      success: false,
-      message: "User doesnt exist",
-    });
+    res.status(400);
+    throw new Error("User not Found");
   }
 
   const isMatch = await bcrypt.compare(password, user.password);
 
   if (!isMatch) {
-    return res.status(400).json({
-      success: false,
-      message: "Invalid Password",
-    });
+    res.status(400);
+    throw new Error("Invalid password");
   }
 
   const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
 
   res.status(200).json({
     success: true,
-    message: "Login Successful",
+    message: "Login successful",
     data: {
       user: { id: user._id, name: user.name, email: user.email },
-      token: token,
+      token,
     },
   });
 });
-
-export default router;

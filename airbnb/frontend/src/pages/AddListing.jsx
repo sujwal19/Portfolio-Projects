@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const server = "http://localhost:5000/api/listings";
 
@@ -48,7 +49,7 @@ const AddListing = () => {
       const token = localStorage.getItem("token");
 
       if (!token) {
-        alert("You must be logged in to add listing");
+        toast.error("You must be logged in to add listing");
         return;
       }
 
@@ -67,12 +68,12 @@ const AddListing = () => {
           "Content-Type": "multipart/form-data",
         },
       });
-      console.log(res.data);
+      toast.success("Listing Added!");
       setFormData({ title: "", description: "", price: "", image: "" });
       setPreview(null);
       navigate(`listing/${res.data.data._id}`);
     } catch (err) {
-      console.log(err);
+      toast.success("Error Adding Listing!");
     }
   };
 

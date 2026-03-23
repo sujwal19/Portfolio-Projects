@@ -1,60 +1,128 @@
-airbnb-clone/
-│
-├── client/ # Frontend (React)
-│ ├── package.json
-│ ├── public/
-│ │ └── index.html
-│ └── src/
-│ ├── App.jsx
-│ ├── main.jsx
-│ ├── pages/
-│ │ ├── Home.jsx
-│ │ ├── ListingDetails.jsx
-│ │ └── Login.jsx
-│ └── components/
-│ ├── Navbar.jsx
-│ └── ListingCard.jsx
+# 🏠 StayEase
 
-├── server/ # Backend (Node + Express)
-│ ├── package.json
-│ ├── server.js
-│ ├── .env # DB URI + JWT secret
-│ ├── routes.js # Combine all routes
-│ └── models/
-│ ├── User.js
-│ └── Listing.js
-│
-└── README.md
+**StayEase** is a full-stack Airbnb-inspired platform where users can explore, create, and manage property listings with authentication and image uploads.
 
-✅ Minimal Features to Implement First
+---
 
-1. Frontend
-   Display a list of listings (Home page)
-   View details of a listing (ListingDetails page)
-   Simple login page (Login page)
-   Navbar component
+## 🚀 Features
 
-2. Backend
-   Express server
-   API routes:
-   GET /listings → get all listings
-   POST /login → login user
-   POST /listings → add a new listing (optional for first version)
-   MongoDB models: User, Listing
+- 🔐 User Authentication (JWT)
+- 🏡 Create, Read, Update, Delete Listings
+- 🖼️ Image Upload (Cloudinary)
+- 🔎 Search Listings
+- 👤 Ownership-based access (only owner can edit/delete)
+- 📱 Responsive UI
 
-3. .env (backend)
-   PORT=5000
-   MONGO_URI=mongodb://localhost:27017/airbnb
-   JWT_SECRET=mysecretkey
+---
 
-📝 Description (resume / project)
+## 🛠️ Tech Stack
 
-Short version:
+### Frontend
 
-A full-stack Airbnb-inspired platform where users can list, search, and manage rental properties with authentication and image uploads.
+- React
+- Axios
+- React Router
 
-📝 Slightly better version (for portfolio)
+### Backend
 
-StayEase is a full-stack MERN application that allows users to create, explore, and manage property listings with secure authentication, image uploads, and ownership-based access control.
+- Node.js
+- Express.js
+- MongoDB (Mongoose)
+- JWT Authentication
+- Multer (file upload)
+- Cloudinary (image storage)
 
-Stay made simple”
+---
+
+## 📂 Project Structure
+
+```
+backend/
+  controllers/
+  middleware/
+  models/
+  routes/
+  utils/
+  config/
+
+frontend/
+  components/
+  pages/
+```
+
+---
+
+## ⚙️ Environment Variables
+
+Create a `.env` file in backend:
+
+```
+MONGO_URI=your_mongodb_uri
+JWT_SECRET=your_secret_key
+CLOUDINARY_CLOUD_NAME=xxx
+CLOUDINARY_API_KEY=xxx
+CLOUDINARY_API_SECRET=xxx
+PORT=5000
+```
+
+---
+
+## ▶️ Run Locally
+
+### Backend
+
+```
+cd backend
+npm install
+npm run dev
+```
+
+### Frontend
+
+```
+cd frontend
+npm install
+npm start
+```
+
+---
+
+## 🌐 Live Demo
+
+👉 Add your deployed link here
+
+---
+
+## 💡 What I Learned
+
+- Handling authentication with JWT
+- Building REST APIs with Express
+- Managing file uploads with Multer & Cloudinary
+- Structuring scalable backend with controllers & middleware
+- Full-stack integration (MERN)
+
+---
+
+## 📸 Screenshots
+
+### 🏠 Home Page
+
+![Home](./screenshots/home.png)
+
+### 📄 Listing Details
+
+![Details](./screenshots/details.png)
+
+### ➕ Add Listing
+
+![Add](./screenshots/add.png)
+
+---
+
+## 📬 Contact
+
+Feel free to connect or reach out!
+
+- 💻 GitHub: [sujwal19](https://github.com/sujwal19)
+- 🔗 LinkedIn: [Sujwal Dhungana](https://linkedin.com/in/sujwal)
+- ✉️ Email: dsujwal24@email.com

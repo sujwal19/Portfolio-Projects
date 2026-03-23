@@ -1,7 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import ListingCard from "../components/ListingCard";
+import { formatName } from "../utils/formatName";
+import toast from "react-hot-toast";
 
 const ListingDetails = () => {
   const navigate = useNavigate();
@@ -15,7 +16,7 @@ const ListingDetails = () => {
       const res = await axios.get(`http://localhost:5000/api/listings/${id}`);
       setListing(res.data.data);
     } catch (err) {
-      console.error(err);
+      toast.error(err.response?.data?.message || "Something went wrong");
     } finally {
       setLoading(false);
     }
@@ -41,10 +42,10 @@ const ListingDetails = () => {
           Authorization: "Bearer " + token,
         },
       });
-      console.log("done"); // add toaster
+      toast.success("Listing deleted!");
       navigate("/");
     } catch (err) {
-      console.log(err);
+      toast.error(err.response?.data?.message || "Something went wrong");
     }
   };
 
@@ -79,7 +80,9 @@ const ListingDetails = () => {
         <h3 className="text-xl font-semibold text-[#FF6B6B]">
           ${listing.price}
         </h3>
-        <p className="text-gray-500">Hosted by: {listing.host?.name}</p>
+        <p className="text-gray-500">
+          Hosted by: {formatName(listing.host?.name)}
+        </p>
 
         {owner && (
           <section className="mt-4 flex gap-3">

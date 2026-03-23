@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import ListingCard from "../components/ListingCard";
 import { Link } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const Home = () => {
   const [listings, setListings] = useState([]);
@@ -14,7 +15,7 @@ const Home = () => {
       const res = await axios.get(`http://localhost:5000/api/listings`);
       setListings(res.data.data);
     } catch (err) {
-      alert("Something went wrong");
+      toast.error(err.response?.data?.message || "Something went wrong");
     } finally {
       setLoading(false);
     }
@@ -34,7 +35,7 @@ const Home = () => {
       );
       setListings(res.data.data);
     } catch (err) {
-      console.error(err);
+      toast.error(err.response?.data?.message || "Something went wrong");
     } finally {
       setLoading(false);
     }

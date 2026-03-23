@@ -1,36 +1,48 @@
 import express from "express";
-import "dotenv/config";
 import cors from "cors";
-import "colors";
+import dotenv from "dotenv";
 import mongoose from "mongoose";
-import auth from "./routes/auth.js";
-import listings from "./routes/listings.js";
+import "colors";
+
+import authRoutes from "./routes/authRoutes.js";
+import listingRoutes from "./routes/listingRoutes.js";
+import { errorHandler } from "./middleware/errorMiddleware.js";
+
+dotenv.config();
 
 const app = express();
+
+// Middleware
 app.use(cors());
 app.use(express.json());
 
+// DB Connection
 const connectDB = async () => {
   try {
     const conn = await mongoose.connect(process.env.MONGO_URI);
-    console.log(
-      `MongoDB Connected: ${conn.connection.host}`.cyan.bold.underline,
-    );
+    console.log(`MongoDB Connected: ${conn.connection.host}`.cyan.bold);
   } catch (err) {
-    console.log("Error: ", err.message);
+    console.error(err.message);
     process.exit(1);
   }
 };
+
 connectDB();
 
+// Routes
 app.get("/", (req, res) => {
-  res.send("Hello World");
+  res.send("API is running...");
 });
 
-app.use("/api/auth", auth);
-app.use("/api/listings", listings);
+app.use("/api/auth", authRoutes);
+app.use("/api/listings", listingRoutes);
 
-const PORT = process.env.PORT;
+// Error Middleware
+app.use(errorHandler);
+
+// Server
+const PORT = process.env.PORT || 5000;
+
 app.listen(PORT, () => {
-  console.log(`Server running on port localhost: ${PORT}`.yellow.bold);
+  console.log(`Server running on http://localhost:${PORT}`.yellow.bold);
 });

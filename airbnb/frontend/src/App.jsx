@@ -6,10 +6,21 @@ import ListingDetails from "./pages/ListingDetails";
 import Login from "./pages/Login";
 import { Routes, Route } from "react-router-dom";
 import Signup from "./pages/Signup";
+import { Toaster } from "react-hot-toast";
 
 const App = () => {
   return (
     <div className="add-listing bg-[#F7F7F7]">
+      <Toaster
+        position="top-right"
+        toastOptions={{
+          style: {
+            background: "#333",
+            color: "#fff",
+            borderRadius: "8px",
+          },
+        }}
+      />
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
