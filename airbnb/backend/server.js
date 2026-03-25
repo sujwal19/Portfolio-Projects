@@ -13,7 +13,12 @@ dotenv.config();
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://stay-in-ease.vercel.app",
+    credentials: true,
+  }),
+);
 app.use(express.json());
 
 // DB Connection
