@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import { API_URL } from "../utils/config";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -29,7 +30,7 @@ const Signup = () => {
     }
 
     try {
-      const url = "http://localhost:5000/api/auth/register";
+      const url = `${API_URL}/auth/register`;
       const response = await axios.post(url, signupInfo);
       toast.success("Account created!");
       setSignupInfo({ name: "", email: "", password: "" });

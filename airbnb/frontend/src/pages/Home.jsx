@@ -3,6 +3,7 @@ import axios from "axios";
 import ListingCard from "../components/ListingCard";
 import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
+import { API_URL } from "../utils/config";
 
 const Home = () => {
   const [listings, setListings] = useState([]);
@@ -12,7 +13,7 @@ const Home = () => {
   const getListings = async () => {
     setLoading(true);
     try {
-      const res = await axios.get(`http://localhost:5000/api/listings`);
+      const res = await axios.get(`${API_URL}/listings`);
       setListings(res.data.data);
     } catch (err) {
       toast.error(err.response?.data?.message || "Something went wrong");
@@ -30,9 +31,7 @@ const Home = () => {
     setLoading(true);
     try {
       const searchQuery = searchInput.trim();
-      const res = await axios.get(
-        `http://localhost:5000/api/listings?q=${searchQuery}`,
-      );
+      const res = await axios.get(`${API_URL}/listings?q=${searchQuery}`);
       setListings(res.data.data);
     } catch (err) {
       toast.error(err.response?.data?.message || "Something went wrong");

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { formatName } from "../utils/formatName";
 import toast from "react-hot-toast";
+import { API_URL } from "../utils/config";
 
 const ListingDetails = () => {
   const navigate = useNavigate();
@@ -13,7 +14,7 @@ const ListingDetails = () => {
   const getListing = async () => {
     setLoading(true);
     try {
-      const res = await axios.get(`http://localhost:5000/api/listings/${id}`);
+      const res = await axios.get(`${API_URL}/listings/${id}`);
       setListing(res.data.data);
     } catch (err) {
       toast.error(err.response?.data?.message || "Something went wrong");
@@ -37,7 +38,7 @@ const ListingDetails = () => {
     if (!confirmDelete) return;
 
     try {
-      await axios.delete(`http://localhost:5000/api/listings/${listing._id}`, {
+      await axios.delete(`${API_URL}/listings/${listing._id}`, {
         headers: {
           Authorization: "Bearer " + token,
         },

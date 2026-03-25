@@ -2,8 +2,7 @@ import { useRef, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-
-const server = "http://localhost:5000/api/listings";
+import { API_URL } from "../utils/config";
 
 const AddListing = () => {
   const navigate = useNavigate();
@@ -62,7 +61,7 @@ const AddListing = () => {
         data.append("image", formData.image);
       }
 
-      const res = await axios.post(server, data, {
+      const res = await axios.post(`${API_URL}/listings`, data, {
         headers: {
           Authorization: "Bearer " + token,
           "Content-Type": "multipart/form-data",

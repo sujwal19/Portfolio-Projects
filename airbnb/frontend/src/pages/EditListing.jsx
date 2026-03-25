@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import ListingCard from "../components/ListingCard";
 import toast from "react-hot-toast";
+import { API_URL } from "../utils/config";
 
 const EditListing = () => {
   const navigate = useNavigate();
@@ -30,7 +31,7 @@ const EditListing = () => {
   const getListing = async () => {
     setLoading(true);
     try {
-      const res = await axios.get(`http://localhost:5000/api/listings/${id}`);
+      const res = await axios.get(`${API_URL}/listings/${id}`);
       setListing(res.data.data);
     } catch (err) {
       console.error(err);
@@ -93,7 +94,7 @@ const EditListing = () => {
       if (formData.image) data.append("image", formData.image);
       if (isImageRemoved) data.append("removeImage", "true");
 
-      await axios.put(`http://localhost:5000/api/listings/${id}`, data, {
+      await axios.put(`${API_URL}/listings/${id}`, data, {
         headers: {
           Authorization: "Bearer " + token,
           "Content-Type": "multipart/form-data",
